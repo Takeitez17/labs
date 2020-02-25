@@ -1,0 +1,50 @@
+#include <iostream>
+#include <fstream>	
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, ""); 
+	int a, b, n;
+	cout << "Выберете случайные числа на интервала [a,b]" << endl;
+	cout << "a - "; cin >> a;
+	cout << "b - "; cin >> b;
+	n = b - a + 1;
+	int* A = new int[n];
+	for (int i = 0; i < n; i++)
+	{
+		A[i] = rand() % (b - a + 1) + a;
+	}
+	for (int i = 0; i < n; i++)
+	{
+		cout << A[i] << " ";
+	}
+	cout << endl;
+	int k;
+	cout << "Массив будет дополнен заданным к, после всех положительных элементов массива." << endl;
+	cout << "k - "; cin >> k;
+	int nk = n; // счетчик положительных чисел, для подсчета элементов будущего массива.
+	for (int i = 0; i < n; i++)
+	{
+		if (A[i] > 0)
+		{
+			nk++;
+		}
+	}
+	int* C = new int[nk]; 
+	for (int i = 0, j = 0; i < n; i++)
+	{
+		if (A[i] > 0)
+		{
+			C[j] = A[i];	
+			C[j + 1] = k;
+			j+=2;			
+		}
+	}
+	cout << "Массив после дополнения - " << endl;
+	for (int i = 0; i < nk; i++)
+	{
+		cout << C[i] << " ";
+	}
+	return 0;
+}

@@ -1,0 +1,59 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	int* dmass;
+	int C = 0, temp, K;
+	string path = "C:\\Users\\mroga\\Desktop\\file.txt", O;
+	ifstream out;
+	out.open(path);
+	if (!out.is_open())
+	{
+		cout << "Ошибка открытия файла!\n";
+		return 0;
+	}
+	while (!out.eof())
+	{
+		O = " ";
+		out >> O;
+		C++;
+	}
+	out.close();
+	out.open(path);
+	dmass = new int[C];
+	for (int i = 0; i < C; i++)
+	{
+		out >> K;
+		if (K > 0)
+		{
+			dmass[i] = K;
+		}
+	}
+	out.close();
+	cout << "Старый массив - ";
+	for (int i = 0; i < C; i++)
+	{
+		cout << dmass[i] << " ";
+	}
+	for (int i = 0; i < C; i++)
+	{
+			for (int j = 0; j < C - 1; j++)
+			{
+				if (dmass[j] > dmass[j + 1])
+				{
+					temp = dmass[j]; // создали дополнительную переменную
+					dmass[j] = dmass[j + 1]; // меняем местами
+					dmass[j + 1] = temp; // значения элементов
+				}
+			}
+	}
+	cout << "\nНовый массив - ";
+	for (int i = 0; i < C; i++)
+	{
+			cout << dmass[i] << " ";
+	}
+	return 0;
+}
