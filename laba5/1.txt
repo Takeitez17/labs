@@ -1,0 +1,93 @@
+#include <algorithm>
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+
+using namespace std;
+
+struct room 
+{
+	int number;
+	int telephone;
+	string Name;
+	string tarif;
+	int cost;
+};
+
+bool SortBySurname(const room& r1, const room& r2)
+{
+	return r1.Name < r2.Name;
+}
+
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	string b;
+	string x;
+	room s;
+	ifstream file;
+
+	file.open("C:\\Users\\mroga\\source\\repos\\121212\\File.txt");
+	int len(0);
+
+	if (file.is_open())
+	{
+		while (!file.eof()) 
+		{
+			string s;
+			getline(file, s);
+			len++;
+		}
+	}
+
+	room* arr = new room[len];
+	file.seekg(0, ios_base::beg);
+
+	for (size_t i = 0; i < len; i++)
+	{
+		getline(file, x);
+		istringstream iss(x);
+
+		iss >> s.number >> s.telephone >> s.Name >> s.tarif >> s.cost;
+
+		arr[i] = s;
+	}
+
+	for (size_t n = 0; n < len; n++)
+	{
+		cout << arr[n].number << " "
+			<< arr[n].telephone << " "
+			<< arr[n].Name << " "
+			<< arr[n].tarif << " "
+			<< arr[n].cost << endl;
+	}
+	cout << "Номера, закрепленные за Абонентами с фамилией - Иванов" << endl;
+
+	for (size_t n = 0; n < len; n++)
+	{
+		if (arr[n].Name == "Ivanov")
+		{
+			cout << arr[n].number << endl;
+		}
+	}
+	cout << "\nИнформация о всех абонентах с самыми дешевыми тарифами, для которых абонентская плата в год не превышает одной тысячи рублей. Данные отсортированы по фамилии" << endl;
+	sort(arr, arr + len, SortBySurname);
+
+	for (size_t n = 0; n < len; n++)
+	{
+		if (arr[n].cost*12 <= 1000)
+		{
+			cout << arr[n].number << " "
+				<< arr[n].telephone << " "
+				<< arr[n].Name << " "
+				<< arr[n].tarif << " "
+				<< arr[n].cost << endl;
+		}
+	}
+
+	file.close();
+
+}
+
+

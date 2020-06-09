@@ -1,0 +1,10 @@
+1 08900 Nagiev Mitrofan Mitrofanov Ultra 300
+2 79081 Ivanov Sergey Sergeyev Standart 200
+3 79181 Popyh Holland Loys Base 50
+4 89019 Jeneva Harmet Omlet Standart 200
+5 79089 Reutov Leush Pols Base 50
+6 89012 Yushevich Komers Utey Ultra 300
+7 89123 Ivanov Sasha Abrams Ultra 300
+8 81234 Zavich Intel Raduc Standart 200
+9 23456 Ivanov Oleg Olps Base 50
+10 99009 Everec Olgerd Van Ultra 300
